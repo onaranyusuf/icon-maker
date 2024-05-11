@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaRegSmileWink } from "react-icons/fa";
 import { Slider } from "@/components/ui/slider"
 import ColorPickerController from './ColorPickerController';
+import { UpdateStorageContext } from '@/context/UpdateStorageContext';
+import { Smile } from 'lucide-react';
+import IconList from './IconList';
 
 
 function IconController() {
-    const [size,setSize]=useState(280);
-    const [degree,setDegree]=useState(0);
-    const [color,setColor]=useState('#fff');
-    const storageValue=JSON.parse(localStorage.getItem('value'))|| defaultValue;
+    const storageValue=JSON.parse(localStorage.getItem('value'));
+
+    const [size,setSize]=useState(storageValue?storageValue?.iconSize:280);
+    const [degree,setDegree]=useState(storageValue?storageValue?.iconDegree:0);
+    const [color,setColor]=useState(storageValue?storageValue?.iconColor:'#fff');
+    const {updateStorage, setUpdateStorage}=useContext(UpdateStorageContext);
+    const [icon,setIcon]=useState(storageValue?storageValue?.icon:'Smile');
 
     useEffect(()=>{
         const updatedValue={
@@ -16,30 +22,30 @@ function IconController() {
             iconSize:size,
             iconDegree:degree,
             iconColor:color,
-            icon: 'FaRegSmileWink'
+            icon: icon
         }
-
+        setUpdateStorage(updatedValue);
         localStorage.setItem('value',JSON.stringify(updatedValue));
 
-    },[size, degree, color])
+    },[size, degree, color, icon])
 
   return (
     <div>
         <div>
-            <label>Icon</label>
-            <div className='flex justify-center items-center p-3 my-2 cursor-pointer bg-gray-200 rounded-lg w-[50px] h-[50px]'>
-                <FaRegSmileWink className='w-[50px] h-[50px]'/>
+            <div>
+                <IconList selectedIcon={(icon)=>setIcon(icon)}/>
             </div>
+
             <div className='py-2'>
                 <label className='py-2 flex justify-between items-center '>Size <span>{size} px</span></label>
-                <Slider defaultValue={[280]} max={512} step={1}  
+                <Slider defaultValue={[size]} max={512} step={1}  
                 onValueChange={(event)=>setSize(event[0])}
                 />
             </div>
 
             <div className='py-2'>
                 <label className='py-2 flex justify-between items-center '>Rotate <span>{degree}°</span></label>
-                <Slider defaultValue={[0]} max={360} step={1}  
+                <Slider defaultValue={[degree]} max={360} step={1}  
                 onValueChange={(event)=>setDegree(event[0])}
                 />
             </div>
