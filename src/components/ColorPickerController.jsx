@@ -8,7 +8,7 @@ function ColorPickerController({hideController=false, selectedColor}) {
         <ColorPicker value={color} 
         onChange={(e)=> {setColor(e); selectedColor(e)}} 
         hideControls={hideController}
-        hideEyeDrop hideAdvancedSliders hideColorGuide hideInputType
+        hideEyeDrop hideAdvancedSliders hideColorGuide hideInputType hidePresets
         />
     </div>
   )
