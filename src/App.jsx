@@ -4,10 +4,14 @@ import Header from './components/Header'
 import SideNav from './components/SideNav'
 import IconController from './components/IconController'
 import BgController from './components/BgController'
+import IconPreview from './components/IconPreview'
+import { UpdateStorageContext } from './context/UpdateStorageContext'
 
 function App() {
   const [selectedIndex, setSelectedIndex]=useState(0);
+  const [updateStorage, setUpdateStorage]=useState({});
   return (
+    <UpdateStorageContext.Provider value={{updateStorage, setUpdateStorage}}>
     <>
       <Header/>
       <div className='w-64 fixed'>
@@ -22,15 +26,16 @@ function App() {
         </div>
 
         <div className='md:col-span-3'>
-          Icon Preview
+          <IconPreview/>
         </div>
           
-        <div className=''>
+        <div className='bg-green-50 w-screen'>
           Ad Banner
         </div>  
       </div>
 
     </>
+    </UpdateStorageContext.Provider>
   )
 }
 
