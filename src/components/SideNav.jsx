@@ -15,11 +15,6 @@ function SideNav({selectedIndex}) {
       name: "Background",
       icon: RiImageEditFill,
     },
-    {
-      id: 3,
-      name: "Upgrade",
-      icon: GiArmorUpgrade,
-    },
   ];
   const [activeIndex, setActiveIndex] = useState(0);
   return (
