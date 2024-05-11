@@ -6,14 +6,17 @@ import IconController from './components/IconController'
 import BgController from './components/BgController'
 import IconPreview from './components/IconPreview'
 import { UpdateStorageContext } from './context/UpdateStorageContext'
+import BannerArea from './components/BannerArea'
 
 function App() {
   const [selectedIndex, setSelectedIndex]=useState(0);
   const [updateStorage, setUpdateStorage]=useState({});
+  const [downloadIcon,setDownloadIcon]=useState();
+
   return (
     <UpdateStorageContext.Provider value={{updateStorage, setUpdateStorage}}>
     <>
-      <Header/>
+      <Header DownloadIcon={setDownloadIcon} />
       <div className='w-64 fixed'>
         <SideNav selectedIndex={(value)=> setSelectedIndex(value)}/>
       </div>
@@ -26,15 +29,18 @@ function App() {
         </div>
 
         <div className='md:col-span-3'>
-          <IconPreview/>
+          <IconPreview downloadIcon={downloadIcon} />
         </div>
           
-        <div className='bg-green-50 w-screen'>
-          Ad Banner
+        <div className=''>
+          <BannerArea/>
         </div>  
       </div>
 
     </>
+    <div className="name-footer text-black">
+        <a href="https://github.com/onaranyusuf" target="_blank" rel="noopener noreferrer">Developed with ❤️ by YO</a>
+      </div>
     </UpdateStorageContext.Provider>
   )
 }
