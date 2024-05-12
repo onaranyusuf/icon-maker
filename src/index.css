@@ -84,7 +84,7 @@ button:focus-visible {
 /* Kaydırma çubuğu izi (dikey kaydırma) */
 ::-webkit-scrollbar-thumb {
   --tw-bg-opacity: 1;
-  background-color: rgb(243 240 240 / var(--tw-bg-opacity));
+  background-color: rgb(180 180 180 / var(--tw-bg-opacity));
   border-radius: 5px; /* Çubuğun köşe yarıçapı */
 }
 
