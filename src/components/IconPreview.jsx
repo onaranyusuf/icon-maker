@@ -18,7 +18,7 @@ function IconPreview({ downloadIcon }) {
     }
   }, [downloadIcon]);
 
-  const Icon = ({ name, color, size, rotate }) => {
+  const Icon = ({ name, color, size, rotate, strokeWidth }) => {
     const LucidIcon = icons[name];
     if (!LucidIcon) {
       return;
@@ -27,6 +27,7 @@ function IconPreview({ downloadIcon }) {
       <LucidIcon
         color={color}
         size={size}
+        strokeWidth={strokeWidth}
         style={{
           transform: `rotate(${rotate}deg)`,
         }}
@@ -72,6 +73,7 @@ function IconPreview({ downloadIcon }) {
             name={storageValue?.icon}
             color={storageValue?.iconColor}
             size={storageValue?.iconSize}
+            strokeWidth={storageValue?.iconStrokeWidth}
             rotate={storageValue?.iconDegree}
           />
         </div>
