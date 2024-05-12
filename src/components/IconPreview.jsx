@@ -46,7 +46,7 @@ function IconPreview({ downloadIcon }) {
         const pngImage=canvas.toDataURL('image/png');
         const downloadLink=document.createElement('a');
         downloadLink.href=pngImage;
-        downloadLink.download=`YO_Icon_Heaven.png`;
+        downloadLink.download=`YO_Icon_Heaven_${storageValue?.icon}.png`;
         downloadLink.click();
 
         
