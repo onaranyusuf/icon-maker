@@ -7,11 +7,13 @@ import BgController from './components/BgController'
 import IconPreview from './components/IconPreview'
 import { UpdateStorageContext } from './context/UpdateStorageContext'
 import BannerArea from './components/BannerArea'
+import MobileError from './components/MobileError';
 
 function App() {
   const [selectedIndex, setSelectedIndex]=useState(0);
   const [updateStorage, setUpdateStorage]=useState({});
   const [downloadIcon,setDownloadIcon]=useState();
+  const isMobile = window.innerWidth <= 900;
 
   return (
     <UpdateStorageContext.Provider value={{updateStorage, setUpdateStorage}}>
@@ -38,6 +40,7 @@ function App() {
       </div>
 
     </>
+    {isMobile && <MobileError />}
     <div className="name-footer text-black">
         <a href="https://github.com/onaranyusuf" target="_blank" rel="noopener noreferrer">Developed with ❤️ by YO</a>
       </div>
